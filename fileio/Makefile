@@ -5,18 +5,13 @@ BUILD_DIR = build
 all: \
 	bin \
 	build \
-	bad_exclusive_open \
-	copy \
-	seek_io
+	bad_exclusive_open.c \
+	copy.c \
+	seek_io.c \
+	t_readv.c
 
-bad_exclusive_open: log.o
-	$(CC) $@.c $(BUILD_DIR)/$^ -o $(BIN_DIR)/$@
-
-copy: log.o
-	$(CC) $@.c $(BUILD_DIR)/$^ -o $(BIN_DIR)/$@
-
-seek_io: log.o
-	$(CC) $@.c $(BUILD_DIR)/$^ -o $(BIN_DIR)/$@
+*.c: log.o
+	$(CC) $@ $(BUILD_DIR)/$^ -o $(BIN_DIR)/$(basename $@)
 
 log.o:
 	$(CC) -c log.c -o $(BUILD_DIR)/log.o
