@@ -5,7 +5,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#include "log.h"
+#include "../lib/log/log.h"
 
 int main(int argc, char* argv[])
 {

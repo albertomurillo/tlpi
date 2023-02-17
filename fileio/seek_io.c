@@ -6,7 +6,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#include "log.h"
+#include "../lib/log/log.h"
 
 void usage(char* name)
 {

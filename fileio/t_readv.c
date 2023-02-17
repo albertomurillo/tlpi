@@ -6,7 +6,7 @@
 #include <sys/stat.h>
 #include <sys/uio.h>
 
-#include "log.h"
+#include "../lib/log/log.h"
 
 #ifndef STR_SIZE
 #define STR_SIZE 100

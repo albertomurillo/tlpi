@@ -6,7 +6,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-#include "log.h"
+#include "../lib/log/log.h"
 
 #ifndef BUF_SIZE
 #define BUF_SIZE 1024
