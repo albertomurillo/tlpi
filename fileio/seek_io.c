@@ -6,6 +6,7 @@
 #include <string.h>
 #include <unistd.h>
 
+#include "../lib/getnum/getnum.h"
 #include "../lib/log/log.h"
 
 void usage(char* name)
@@ -33,13 +34,7 @@ int main(int argc, char* argv[])
         case 'r': // Display bytes at current offset, as text
         case 'R': // Display bytes at current offset, in hex
         {
-            errno = 0;
-            char* eptr;
-            size_t len = strtol(&argv[ap][1], &eptr, 10);
-            if (errno != 0) {
-                log_fatalf("%s: %s\n", argv[ap], strerror(errno));
-            }
-
+            size_t len = get_long(&argv[ap][1]);
             unsigned char* buf = malloc(len);
             if (buf == NULL) {
                 log_fatalf("malloc: %s\n", strerror(errno));
@@ -80,13 +75,7 @@ int main(int argc, char* argv[])
 
         case 's': // Change file offset
         {
-            errno = 0;
-            char* eptr;
-            ssize_t offset = strtol(&argv[ap][1], &eptr, 10);
-            if (errno != 0) {
-                log_fatalf("%s: %s\n", argv[ap], strerror(errno));
-            }
-
+            ssize_t offset = get_long(&argv[ap][1]);
             if (lseek(fd, offset, SEEK_SET) == -1) {
                 log_fatalf("lseek: %s\n", strerror(errno));
             }
