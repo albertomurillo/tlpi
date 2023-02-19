@@ -14,6 +14,7 @@ build: $(BIN) $(OBJ) $(LIB_ENV) $(LIB_LOG)
 	$(CC) $(FLAGS) fileio/copy.c $(LIB_LOG) -o $(BIN)/copy
 	$(CC) $(FLAGS) fileio/seek_io.c $(LIB_LOG) -o $(BIN)/seek_io
 	$(CC) $(FLAGS) fileio/t_readv.c $(LIB_LOG) -o $(BIN)/t_readv
+	$(CC) $(FLAGS) memalloc/free_and_sbrk.c $(LIB_LOG) -o $(BIN)/free_and_sbrk
 	$(CC) $(FLAGS) proc/display_env.c $(LIB_LOG) -o $(BIN)/display_env
 	$(CC) $(FLAGS) proc/longjmp.c $(LIB_ENV) $(LIB_LOG) -o $(BIN)/longjmp
 	$(CC) $(FLAGS) proc/modify_env.c $(LIB_ENV) $(LIB_LOG) -o $(BIN)/modify_env
