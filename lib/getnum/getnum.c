@@ -12,7 +12,7 @@ int get_int(const char* str)
     long num = get_long(str);
     if (num < INT_MIN || num > INT_MAX)
         log_fatalf("strtol(\"%s\"): integer out of range\n", str);
-    return num;
+    return (int)num;
 }
 
 long get_long(const char* str)

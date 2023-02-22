@@ -3,13 +3,14 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdnoreturn.h>
 #include <string.h>
 #include <unistd.h>
 
 #include "../lib/getnum/getnum.h"
 #include "../lib/log/log.h"
 
-void usage(char* name)
+noreturn static void usage(char* name)
 {
     fprintf(stderr, "usage: %s file [r<length> | R<length> | w<string> | s<offset>]\n", name);
     exit(EXIT_FAILURE);
@@ -64,7 +65,7 @@ int main(int argc, char* argv[])
 
         case 'w': // Write string at current offset
         {
-            char* val = &argv[ap][1];
+            const char* val = &argv[ap][1];
             size_t n = write(fd, val, strlen(val));
             if (n == -1) {
                 log_fatalf("writing to file %s: %s", argv[1], strerror(errno));

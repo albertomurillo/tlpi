@@ -32,6 +32,8 @@ int main(int argc, char* argv[])
     case 2:
         puts("We jumped back from f2()");
         break;
+    default:
+        break;
     }
 
     exit(EXIT_SUCCESS);

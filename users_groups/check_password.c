@@ -12,7 +12,7 @@
 int main()
 {
     // If limit is indeterminate, make a guess
-    long lnmax = sysconf(_SC_LOGIN_NAME_MAX);
+    int lnmax = (int)sysconf(_SC_LOGIN_NAME_MAX);
     if (lnmax == -1)
         lnmax = 256;
 
@@ -47,7 +47,7 @@ int main()
     char* password = getpass("Password: ");
 
     // Encrypt password and erase cleartext version immediately
-    char* encrypted = crypt(password, pwd->pw_passwd);
+    const char* encrypted = crypt(password, pwd->pw_passwd);
     memset(password, '\0', lnmax);
     if (encrypted == NULL)
         log_fatal("crypt()");
