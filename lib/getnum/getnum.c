@@ -30,5 +30,5 @@ long get_long(const char* str)
     if (*eptr != '\0')
         log_fatalf("strtol(\"%s\"): nonnumeric characters\n", str);
 
-    return num;
+    return (int)num;
 }

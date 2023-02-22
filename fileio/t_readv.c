@@ -53,7 +53,7 @@ int main(int argc, char* argv[])
     if (n < iov_size) {
         printf("read fewer bytes than requested\n");
     }
-    printf("total bytes requested: %ld; bytes read: %ld\n", (long)iov_size, (long)n);
+    printf("total bytes requested: %ld; bytes read: %ld\n", iov_size, n);
 
     exit(EXIT_SUCCESS);
 }
