@@ -10,18 +10,23 @@ LIBS := \
 	$(OBJ)/getnum.o \
 	$(OBJ)/log.o
 
+UNAME := $(shell uname)
+
 .PHONY: build
 build: $(BIN) $(OBJ) $(LIBS)
 	$(CC) $(FLAGS) $(LIBS) fileio/bad_exclusive_open.c -o $(BIN)/bad_exclusive_open
 	$(CC) $(FLAGS) $(LIBS) fileio/copy.c -o $(BIN)/copy
 	$(CC) $(FLAGS) $(LIBS) fileio/seek_io.c -o $(BIN)/seek_io
 	$(CC) $(FLAGS) $(LIBS) fileio/t_readv.c -o $(BIN)/t_readv
-	$(CC) $(FLAGS) $(LIBS) memalloc/free_and_sbrk.c -o $(BIN)/free_and_sbrk
 	$(CC) $(FLAGS) $(LIBS) proc/display_env.c -o $(BIN)/display_env
 	$(CC) $(FLAGS) $(LIBS) proc/longjmp.c -o $(BIN)/longjmp
 	$(CC) $(FLAGS) $(LIBS) proc/modify_env.c -o $(BIN)/modify_env
 	$(CC) $(FLAGS) $(LIBS) proc/necho.c -o $(BIN)/necho
 	$(CC) $(FLAGS) $(LIBS) proc/setjmp_vars.c -o $(BIN)/setjmp_vars
+ifeq ($(UNAME), Linux)
+	$(CC) $(FLAGS) $(LIBS) memalloc/free_and_sbrk.c -o $(BIN)/free_and_sbrk
+	$(CC) $(FLAGS) $(LIBS) users_groups/check_password.c -o $(BIN)/check_password -lcrypt
+endif
 
 $(OBJ)/env.o:
 	$(CC) $(FLAGS) -c lib/env/env.c -o $(OBJ)/env.o

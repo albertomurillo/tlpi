@@ -6,7 +6,7 @@
 
 void log_fatal(const char* msg)
 {
-    fprintf(stderr, "[FATAL] %s", msg);
+    fprintf(stderr, "[FATAL] %s\n", msg);
     exit(EXIT_FAILURE);
 }
 
