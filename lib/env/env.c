@@ -3,15 +3,15 @@
 #include <stdlib.h>
 #include <string.h>
 
-extern char** environ;
+extern char **environ;
 
 void clearenv()
 {
-    for (char** ep = environ; *ep != NULL;) {
+    for (char **ep = environ; *ep != NULL;) {
         size_t len = strlen(*ep);
         char buf[len];
         strcpy(buf, *ep);
-        char* envvar = strtok(buf, "=");
+        char *envvar = strtok(buf, "=");
         unsetenv(envvar);
     }
 }

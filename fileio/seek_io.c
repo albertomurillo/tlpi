@@ -10,24 +10,22 @@
 #include "../lib/getnum/getnum.h"
 #include "../lib/log/log.h"
 
-noreturn static void usage(char* name)
+noreturn static void usage(char *name)
 {
     fprintf(stderr, "usage: %s file [r<length> | R<length> | w<string> | s<offset>]\n", name);
     exit(EXIT_FAILURE);
 }
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
     // Usage
-    if (argc < 3) {
+    if (argc < 3)
         usage(argv[0]);
-    }
 
     // Open file
     int fd = open(argv[1], O_RDWR | O_CREAT, 0666);
-    if (fd == -1) {
+    if (fd == -1)
         log_fatalf("opening file %s: %s\n", argv[1], strerror(errno));
-    }
 
     // Parse options
     for (int ap = 2; ap < argc; ap++) {
@@ -36,26 +34,22 @@ int main(int argc, char* argv[])
         case 'R': // Display bytes at current offset, in hex
         {
             size_t len = get_long(&argv[ap][1]);
-            unsigned char* buf = malloc(len);
-            if (buf == NULL) {
+            unsigned char *buf = malloc(len);
+            if (buf == NULL)
                 log_fatalf("malloc: %s\n", strerror(errno));
-            }
 
             size_t n = read(fd, buf, len);
-            if (n == -1) {
+            if (n == -1)
                 log_fatalf("read: %s\n", strerror(errno));
-            }
             if (n == 0) {
                 printf("%s: end-of-file\n", argv[ap]);
             } else {
                 printf("%s: ", argv[ap]);
-                for (int i = 0; i < n; i++) {
-                    if (argv[ap][0] == 'r') {
+                for (int i = 0; i < n; i++)
+                    if (argv[ap][0] == 'r')
                         printf("%c", isprint(buf[i]) ? buf[i] : '?');
-                    } else {
+                    else
                         printf("%02x ", buf[i]);
-                    }
-                }
                 printf("\n");
             }
 
@@ -65,11 +59,11 @@ int main(int argc, char* argv[])
 
         case 'w': // Write string at current offset
         {
-            const char* val = &argv[ap][1];
+            const char *val = &argv[ap][1];
             size_t n = write(fd, val, strlen(val));
-            if (n == -1) {
+            if (n == -1)
                 log_fatalf("writing to file %s: %s", argv[1], strerror(errno));
-            }
+
             printf("%s: wrote %ld bytes\n", argv[ap], n);
             break;
         }
@@ -77,9 +71,8 @@ int main(int argc, char* argv[])
         case 's': // Change file offset
         {
             ssize_t offset = get_long(&argv[ap][1]);
-            if (lseek(fd, offset, SEEK_SET) == -1) {
+            if (lseek(fd, offset, SEEK_SET) == -1)
                 log_fatalf("lseek: %s\n", strerror(errno));
-            }
 
             printf("%s: lseek succeeded\n", argv[ap]);
             break;

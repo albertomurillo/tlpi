@@ -12,7 +12,7 @@
 #define STR_SIZE 100
 #endif
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
     // check usage
     if (argc != 2) {
@@ -21,9 +21,8 @@ int main(int argc, char* argv[])
     }
 
     int fd = open(argv[1], O_RDONLY);
-    if (fd == -1) {
+    if (fd == -1)
         log_fatalf("%s: %s\n", argv[1], strerror(errno));
-    }
 
     struct iovec iov[3];
     size_t iov_size = 0;
@@ -47,13 +46,11 @@ int main(int argc, char* argv[])
     iov_size += iov[2].iov_len;
 
     ssize_t n = readv(fd, iov, 3);
-    if (n == -1) {
+    if (n == -1)
         log_fatalf("readv(): %s\n", strerror(errno));
-    }
-    if (n < iov_size) {
+    if (n < iov_size)
         printf("read fewer bytes than requested\n");
-    }
-    printf("total bytes requested: %ld; bytes read: %ld\n", iov_size, n);
 
+    printf("total bytes requested: %ld; bytes read: %ld\n", iov_size, n);
     exit(EXIT_SUCCESS);
 }

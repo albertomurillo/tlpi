@@ -1,2 +1,8 @@
 ---
+Language: Cpp
 BasedOnStyle: Webkit
+SeparateDefinitionBlocks: Always
+
+# Kernel style
+RemoveBracesLLVM: true
+PointerAlignment: Right

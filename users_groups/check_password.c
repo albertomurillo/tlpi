@@ -16,7 +16,7 @@ int main()
     if (lnmax == -1)
         lnmax = 256;
 
-    char* username = alloca(lnmax);
+    char *username = alloca(lnmax);
     if (username == NULL)
         log_fatal("alloca()");
 
@@ -32,11 +32,11 @@ int main()
     if (username[len - 1] == '\n')
         username[len - 1] = '\0';
 
-    struct passwd* pwd = getpwnam(username);
+    struct passwd *pwd = getpwnam(username);
     if (pwd == NULL)
         log_fatal("couldn't get password record");
 
-    struct spwd* spwd = getspnam(username);
+    struct spwd *spwd = getspnam(username);
     if (spwd == NULL && errno == EACCES)
         log_fatal("no permission to read shadow password file");
 
@@ -44,10 +44,10 @@ int main()
     if (spwd != NULL)
         pwd->pw_passwd = spwd->sp_pwdp;
 
-    char* password = getpass("Password: ");
+    char *password = getpass("Password: ");
 
     // Encrypt password and erase cleartext version immediately
-    const char* encrypted = crypt(password, pwd->pw_passwd);
+    const char *encrypted = crypt(password, pwd->pw_passwd);
     memset(password, '\0', lnmax);
     if (encrypted == NULL)
         log_fatal("crypt()");

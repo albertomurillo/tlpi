@@ -11,7 +11,7 @@ noreturn static void do_jmp(int nvar, int rvar, int vvar)
     longjmp(env, 1);
 }
 
-int main(int agrc, char* argv[])
+int main(int agrc, char *argv[])
 {
     int nvar;
     register int rvar;

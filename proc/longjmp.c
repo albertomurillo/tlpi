@@ -12,14 +12,13 @@ noreturn static void f2()
 
 noreturn static void f1(int argc)
 {
-    if (argc == 1) {
+    if (argc == 1)
         longjmp(env, 1);
-    }
 
     f2();
 }
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
     switch (setjmp(env)) {
     case 0:
