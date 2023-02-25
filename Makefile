@@ -8,7 +8,8 @@ FLAGS := -O
 LIBS := \
 	$(OBJ)/env.o \
 	$(OBJ)/getnum.o \
-	$(OBJ)/log.o
+	$(OBJ)/log.o \
+	$(OBJ)/ugid.o
 
 UNAME := $(shell uname)
 
@@ -26,6 +27,7 @@ build: $(BIN) $(OBJ) $(LIBS)
 ifeq ($(UNAME), Linux)
 	$(CC) $(FLAGS) $(LIBS) memalloc/free_and_sbrk.c -o $(BIN)/free_and_sbrk
 	$(CC) $(FLAGS) $(LIBS) users_groups/check_password.c -o $(BIN)/check_password -lcrypt
+	$(CC) $(FLAGS) $(LIBS) proccred/idshow.c -o $(BIN)/idshow
 endif
 
 $(OBJ)/env.o:
@@ -36,6 +38,9 @@ $(OBJ)/log.o:
 
 $(OBJ)/getnum.o:
 	$(CC) $(FLAGS) -c lib/getnum/getnum.c -o $(OBJ)/getnum.o
+
+$(OBJ)/ugid.o:
+	$(CC) $(FLAGS) -c lib/ugid/ugid.c -o $(OBJ)/ugid.o
 
 $(BIN):
 	mkdir -p $(BIN)
