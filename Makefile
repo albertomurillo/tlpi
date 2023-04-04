@@ -24,6 +24,10 @@ build: $(BIN) $(OBJ) $(LIBS)
 	$(CC) $(FLAGS) $(LIBS) proc/modify_env.c -o $(BIN)/modify_env
 	$(CC) $(FLAGS) $(LIBS) proc/necho.c -o $(BIN)/necho
 	$(CC) $(FLAGS) $(LIBS) proc/setjmp_vars.c -o $(BIN)/setjmp_vars
+	$(CC) $(FLAGS) $(LIBS) time/calendar_time.c -o $(BIN)/calendar_time
+	$(CC) $(FLAGS) $(LIBS) time/show_time.c -o $(BIN)/show_time
+	$(CC) $(FLAGS) $(LIBS) time/strtime.c -o $(BIN)/strtime
+
 ifeq ($(UNAME), Linux)
 	$(CC) $(FLAGS) $(LIBS) memalloc/free_and_sbrk.c -o $(BIN)/free_and_sbrk
 	$(CC) $(FLAGS) $(LIBS) users_groups/check_password.c -o $(BIN)/check_password -lcrypt
