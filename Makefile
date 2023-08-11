@@ -25,6 +25,8 @@ build: $(BIN) $(OBJ) $(LIBS)
 	$(CC) $(FLAGS) $(LIBS) proc/necho.c -o $(BIN)/necho
 	$(CC) $(FLAGS) $(LIBS) proc/setjmp_vars.c -o $(BIN)/setjmp_vars
 	$(CC) $(FLAGS) $(LIBS) time/calendar_time.c -o $(BIN)/calendar_time
+	$(CC) $(FLAGS) $(LIBS) time/current_time.c -o $(BIN)/current_time
+	$(CC) $(FLAGS) $(LIBS) time/process_time.c -o $(BIN)/process_time
 	$(CC) $(FLAGS) $(LIBS) time/show_time.c -o $(BIN)/show_time
 	$(CC) $(FLAGS) $(LIBS) time/strtime.c -o $(BIN)/strtime
 
