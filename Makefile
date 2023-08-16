@@ -29,6 +29,8 @@ build: $(BIN) $(OBJ) $(LIBS)
 	$(CC) $(FLAGS) $(LIBS) time/process_time.c -o $(BIN)/process_time
 	$(CC) $(FLAGS) $(LIBS) time/show_time.c -o $(BIN)/show_time
 	$(CC) $(FLAGS) $(LIBS) time/strtime.c -o $(BIN)/strtime
+	$(CC) $(FLAGS) $(LIBS) syslim/t_sysconf.c -o $(BIN)/t_sysconf
+	$(CC) $(FLAGS) $(LIBS) syslim/t_fpathconf.c -o $(BIN)/t_fpathconf
 
 ifeq ($(UNAME), Linux)
 	$(CC) $(FLAGS) $(LIBS) memalloc/free_and_sbrk.c -o $(BIN)/free_and_sbrk
