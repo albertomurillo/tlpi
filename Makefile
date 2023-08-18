@@ -29,8 +29,9 @@ build: $(BIN) $(OBJ) $(LIBS)
 	$(CC) $(FLAGS) $(LIBS) time/process_time.c -o $(BIN)/process_time
 	$(CC) $(FLAGS) $(LIBS) time/show_time.c -o $(BIN)/show_time
 	$(CC) $(FLAGS) $(LIBS) time/strtime.c -o $(BIN)/strtime
-	$(CC) $(FLAGS) $(LIBS) syslim/t_sysconf.c -o $(BIN)/t_sysconf
 	$(CC) $(FLAGS) $(LIBS) syslim/t_fpathconf.c -o $(BIN)/t_fpathconf
+	$(CC) $(FLAGS) $(LIBS) syslim/t_sysconf.c -o $(BIN)/t_sysconf
+	$(CC) $(FLAGS) $(LIBS) sysinfo/procfs_pidmax.c -o $(BIN)/procfs_pidmax
 	$(CC) $(FLAGS) $(LIBS) sysinfo/t_uname.c -o $(BIN)/t_uname
 
 ifeq ($(UNAME), Linux)
