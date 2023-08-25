@@ -33,6 +33,7 @@ build: $(BIN) $(OBJ) $(LIBS)
 	$(CC) $(FLAGS) $(LIBS) syslim/t_sysconf.c -o $(BIN)/t_sysconf
 	$(CC) $(FLAGS) $(LIBS) sysinfo/procfs_pidmax.c -o $(BIN)/procfs_pidmax
 	$(CC) $(FLAGS) $(LIBS) sysinfo/t_uname.c -o $(BIN)/t_uname
+	$(CC) $(FLAGS) $(LIBS) filebuff/direct_read.c -o $(BIN)/direct_read
 
 ifeq ($(UNAME), Linux)
 	$(CC) $(FLAGS) $(LIBS) memalloc/free_and_sbrk.c -o $(BIN)/free_and_sbrk
