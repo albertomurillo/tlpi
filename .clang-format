@@ -6,3 +6,6 @@ SeparateDefinitionBlocks: Always
 # Kernel style
 RemoveBracesLLVM: true
 PointerAlignment: Right
+
+# Short cases
+AllowShortCaseLabelsOnASingleLine: true
