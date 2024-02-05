@@ -2,6 +2,8 @@ CC := gcc
 CFLAGS := -O
 LDFLAGS := -lcrypt
 
+CLANGFORMAT := clang-format
+
 SOURCEDIR := src
 BINDIR := bin
 
@@ -12,9 +14,12 @@ CHAPTERS := $(filter-out $(LIB_DIR),$(wildcard $(SOURCEDIR)/*))
 SOURCES := $(foreach dir, $(CHAPTERS),$(wildcard $(dir)/*.c))
 TARGETS := $(patsubst $(SOURCEDIR)/%,$(BINDIR)/%,$(basename $(SOURCES)))
 
-.PHONY: all build clean
+.PHONY: all format build clean
 
-all: build
+all: format build
+
+format: $(SOURCES)
+	@$(CLANGFORMAT) -i $(SOURCES)
 
 build: $(LIB) $(TARGETS)
 

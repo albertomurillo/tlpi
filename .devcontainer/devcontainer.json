@@ -1,6 +1,7 @@
 {
     "name": "C++",
     "image": "mcr.microsoft.com/devcontainers/cpp:latest",
+    "postCreateCommand": "sudo apt update && sudo apt install clang-format -y",
     "customizations": {
         "vscode": {
             "settings": {},
