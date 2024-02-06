@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
 
     int fd = open(argv[1], O_RDONLY | O_DIRECT);
     if (fd == -1)
-        log_fatal("open");
+        log_fatale("open()");
 
     // memalign() allocates a block of memory aligned on an address that
     // is a multiple of its first argument.
@@ -42,16 +42,16 @@ int main(int argc, char *argv[])
     // buffer that is also aligned on a 512-byte boundary.
     char *buf = memalign(alignment * 2, length + alignment);
     if (buf == NULL)
-        log_fatal("memalign");
+        log_fatale("memalign()");
 
     buf += alignment;
 
     if (lseek(fd, offset, SEEK_SET) == -1)
-        log_fatal("lseek");
+        log_fatale("lseek()");
 
     ssize_t num_read = read(fd, buf, length);
     if (num_read == -1)
-        log_fatal("read");
+        log_fatale("read()");
     printf("read %ld bytes\n", num_read);
 
     exit(EXIT_SUCCESS);
