@@ -26,7 +26,7 @@ static void display_process_times(const char *msg)
         log_fatal("clock");
 
     printf("clock() returns: %ld clocks-per-sec (%.2f secs)\n",
-        (long)clock_time,
+        clock_time,
         (double)clock_time / CLOCKS_PER_SEC);
 
     struct tms t;
@@ -41,7 +41,7 @@ static void display_process_times(const char *msg)
 int main(int argc, char *argv[])
 {
     printf("CLOCKS_PER_SEC=%ld sysconf(_SC_CLK_TCK)=%ld\n\n",
-        (long)CLOCKS_PER_SEC,
+        CLOCKS_PER_SEC,
         sysconf(_SC_CLK_TCK));
 
     display_process_times("At program start:\n");

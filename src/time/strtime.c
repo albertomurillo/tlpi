@@ -30,10 +30,10 @@ int main(int argc, char *argv[])
     // Not set by strptime(); tells mktime() to determine if DST is in effect
     tm.tm_isdst = -1;
 
-    printf("calendar time (seconds since Epoch): %ld\n", (long)mktime(&tm));
+    printf("calendar time (seconds since Epoch): %ld\n", mktime(&tm));
 
     char sbuf[SBUF_SIZE];
-    char *output_format = (argc > 3) ? argv[3] : "%H:%M:%S %A, %d %B %Y %Z";
+    const char *output_format = (argc > 3) ? argv[3] : "%H:%M:%S %A, %d %B %Y %Z";
     if (strftime(sbuf, SBUF_SIZE, output_format, &tm) == 0)
         log_fatal("strftime() returned 0");
 

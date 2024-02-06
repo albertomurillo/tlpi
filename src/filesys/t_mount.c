@@ -35,8 +35,8 @@ int main(int argc, char *argv[])
 {
     unsigned long flags = 0;
     int opt = 0;
-    char *data = NULL;
-    char *fstype = NULL;
+    const char *data = NULL;
+    const char *fstype = NULL;
 
     while ((opt = getopt(argc, argv, "o:t:f:")) != -1) {
         switch (opt) {

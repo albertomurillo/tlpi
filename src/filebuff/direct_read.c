@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
     ssize_t num_read = read(fd, buf, length);
     if (num_read == -1)
         log_fatal("read");
-    printf("read %ld bytes\n", (long)num_read);
+    printf("read %ld bytes\n", num_read);
 
     exit(EXIT_SUCCESS);
 }

@@ -14,7 +14,7 @@
 char *current_time(const char *format)
 {
     time_t t = time(NULL);
-    struct tm *tm = localtime(&t);
+    const struct tm *tm = localtime(&t);
     if (tm == NULL)
         return NULL;
 
@@ -28,7 +28,7 @@ char *current_time(const char *format)
 
 int main(int argc, char *argv[])
 {
-    char *format = NULL;
+    const char *format = NULL;
     if (argc > 1)
         format = argv[1];
 
