@@ -15,11 +15,15 @@
 
 int main(int argc, char *argv[])
 {
-    uid_t ruid, euid, suid;
+    uid_t ruid;
+    uid_t euid;
+    uid_t suid;
     if (getresuid(&ruid, &euid, &suid) == -1)
         log_fatal("getresuid()");
 
-    gid_t rgid, egid, sgid;
+    gid_t rgid;
+    gid_t egid;
+    gid_t sgid;
     if (getresgid(&rgid, &egid, &sgid) == -1)
         log_fatal("getresgid()");
 

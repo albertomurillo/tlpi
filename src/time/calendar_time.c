@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
 {
     time_t t = time(NULL);
     printf("time() returned seconds since the Epoch (1 Jan 1070): %ld", t);
-    printf(" about %6.3f years\n", t / SECONDS_IN_TROPICAL_YEAR);
+    printf(" about %6.3f years\n", (double)t / SECONDS_IN_TROPICAL_YEAR);
     printf("\n");
 
     struct timeval tv;
@@ -36,12 +36,12 @@ int main(int argc, char *argv[])
         log_fatalf("gettimeofday(): %s\n", strerror(errno));
     printf("gettimeofday() returned:\n");
     printf("struct timeval {\n");
-    printf("    time_t      tv_sec  = %ld\n", (long)tv.tv_sec);
-    printf("    suseconds_t tv_usec = %ld\n", (long)tv.tv_usec);
+    printf("    time_t      tv_sec  = %ld\n", tv.tv_sec);
+    printf("    suseconds_t tv_usec = %ld\n", tv.tv_usec);
     printf("}\n");
     printf("\n");
 
-    struct tm *gmp = gmtime(&t);
+    const struct tm *gmp = gmtime(&t);
     if (gmp == NULL)
         log_fatalf("gmtime(): %s\n", strerror(errno));
     // gmtime() returns a pointer to a statically allocated "struct tm",
@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
     tm_print(&gm);
     printf("\n");
 
-    struct tm *locp = localtime(&t);
+    const struct tm *locp = localtime(&t);
     if (locp == NULL)
         log_fatalf("localtime(): %s\n", strerror(errno));
     // localtime() returns a pointer to a statically allocated "struct tm",
@@ -65,8 +65,8 @@ int main(int argc, char *argv[])
     printf("ctime()   formats the time()   value as: %s", ctime(&t));
     printf("\n");
 
-    printf("mktime() of gmtime()    value: %ld secs\n", (long)mktime(&gm));
-    printf("mktime() of localtime() value: %ld secs\n", (long)mktime(&loc));
+    printf("mktime() of gmtime()    value: %ld secs\n", mktime(&gm));
+    printf("mktime() of localtime() value: %ld secs\n", mktime(&loc));
 
     exit(EXIT_SUCCESS);
 }

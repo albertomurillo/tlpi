@@ -10,11 +10,12 @@
 #define MAX_ALLOCS 1000000
 
 #pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+
+// #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 int main(int argc, char *argv[])
 {
-    char *ptr[MAX_ALLOCS];
+    char *ptr[MAX_ALLOCS] = { NULL };
 
     if (argc < 3) {
         fprintf(stderr, "usage: %s num_allocs block-size [step [min [max]]]\n", argv[0]);
@@ -41,8 +42,10 @@ int main(int argc, char *argv[])
     printf("program break is now: %10p\n", sbrk(0));
 
     printf("freeing blocks from %d to %d in steps of %d\n", free_min, free_max, free_step);
-    for (int j = free_min - 1; j < free_max; j += free_step)
+    for (int j = free_min - 1; j < free_max; j += free_step) {
         free(ptr[j]);
+        ptr[j] = NULL;
+    }
     printf("after free(), program break is: %10p\n", sbrk(0));
 
     exit(EXIT_SUCCESS);

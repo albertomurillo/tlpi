@@ -16,9 +16,9 @@ int main()
     if (lnmax == -1)
         lnmax = 256;
 
-    char *username = alloca(lnmax);
+    char *username = calloc(lnmax, sizeof(char));
     if (username == NULL)
-        log_fatal("alloca()");
+        log_fatal("calloc()");
 
     printf("Username: ");
     fflush(stdout);
@@ -59,5 +59,6 @@ int main()
     }
 
     printf("successfully authenticated: UID=%ld\n", (long)pwd->pw_uid);
+    free(username);
     exit(EXIT_SUCCESS);
 }

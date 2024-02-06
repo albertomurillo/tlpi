@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
     if (lseek(fd, 0, SEEK_SET) == -1)
         log_fatal("lseek");
 
-    if (write(fd, argv[1], strlen(argv[1]) != strlen(argv[1])))
+    if (write(fd, argv[1], strlen(argv[1])) != strlen(argv[1]))
         log_fatal("write() failed");
 
     system("echo /proc/sys/kernel/pid_max now contains $(cat /proc/sys/kernel/pid_max)");

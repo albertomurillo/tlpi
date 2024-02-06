@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
     time_t t = time(NULL);
     printf("ctime() of time() value is: %s", ctime(&t));
 
-    struct tm *loc = localtime(&t);
+    const struct tm *loc = localtime(&t);
     if (loc == NULL)
         log_fatal("localtime()");
     printf("asctime() of local time is %s", asctime(loc));
